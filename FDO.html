@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financial Delivery Office · Розширений офер</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8f5ef;
+  --bg-dark:#0c0b08;
+  --ink:#1a1814;
+  --ink-mid:#3a3730;
+  --muted:#857f72;
+  --rule:#d8d3c8;
+  --accent:#b5300a;
+  --gold:#8a7035;
+  --gold-light:#c4a055;
+  --cream:#ece7dc;
+  --green:#255235;
+  --red-tint:#fbf0ed;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Syne',sans-serif;line-height:1.7;overflow-x:hidden}
+.wrap{max-width:860px;margin:0 auto;padding:0 2.5rem}
+.wide{max-width:1060px;margin:0 auto;padding:0 2.5rem}
+.lbl{font-size:.58rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:1.75rem;display:flex;align-items:center;gap:1rem}
+.lbl::after{content:'';flex:1;height:1px;background:var(--rule)}
+
+/* COVER */
+.cover{min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;padding:3rem 0;border-bottom:2px solid var(--ink);background:var(--bg-dark);color:#e8e2d8;position:relative;overflow:hidden}
+.cover::before{content:'FDO';position:absolute;right:-2rem;bottom:-4rem;font-family:'Cormorant Garamond',serif;font-size:28rem;font-weight:700;color:rgba(255,255,255,.025);line-height:1;pointer-events:none;letter-spacing:-.05em}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:2rem;border-bottom:1px solid #252318}
+.cover-brand{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:#f0ebe0}
+.cover-brand-sub{font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#555048;margin-top:.2rem}
+.cover-doc-type{font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-light);border:1px solid #2a2820;padding:.3rem .8rem}
+.cover-mid{flex:1;display:flex;flex-direction:column;justify-content:center;padding:4rem 0}
+.cover-kicker{font-size:.6rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-bottom:1.75rem;display:flex;align-items:center;gap:.75rem;animation:fadeUp .5s ease .1s both}
+.cover-kicker::before{content:'';width:2rem;height:2px;background:var(--accent);flex-shrink:0}
+.cover-h{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6vw,5.2rem);line-height:1.02;font-weight:700;letter-spacing:-.015em;color:#f0ebe0;margin-bottom:2rem;max-width:800px;animation:fadeUp .6s ease .2s both}
+.cover-h em{font-style:italic;color:var(--accent)}
+
+/* Contour chain — cover version */
+.cover-chain{display:flex;align-items:center;gap:0;margin-bottom:2.5rem;flex-wrap:wrap;gap:.25rem;animation:fadeUp .55s ease .3s both}
+.cc-node{padding:.5rem .9rem;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border:1px solid #2a2820;color:#555048;white-space:nowrap}
+.cc-node.hot{border-color:var(--accent);color:var(--accent);background:rgba(181,48,10,.08)}
+.cc-node.target{border-color:var(--gold-light);color:var(--gold-light);background:rgba(196,160,85,.08)}
+.cc-arr{color:#252318;font-size:1rem;padding:0 .2rem}
+
+.cover-deck{display:grid;grid-template-columns:1fr 1fr;gap:3rem;padding-top:2rem;border-top:1px solid #252318;animation:fadeUp .5s ease .4s both}
+.cover-lead{font-size:.95rem;line-height:1.82;color:#9a9080}
+.cover-lead strong{color:#d4cec4;font-weight:600}
+.cover-verdict{padding:1.75rem;border:1px solid #252318;background:#090806}
+.cv-lbl{font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-light);margin-bottom:.75rem}
+.cv-text{font-family:'Cormorant Garamond',serif;font-size:1.1rem;line-height:1.5;color:#e0dbd4}
+.cv-text em{font-style:italic;color:var(--gold-light)}
+.cover-bot{display:flex;justify-content:space-between;align-items:center;padding-top:2rem;border-top:1px solid #252318}
+.cover-author,.cover-contact{font-size:.75rem;color:#555048}
+.cover-contact a{color:#6a6258;text-decoration:none}
+
+/* SECTIONS */
+.section{padding:5rem 0;border-bottom:1px solid var(--rule)}
+.section.dark{background:var(--bg-dark);color:#e8e2d8}
+.section.tinted{background:var(--cream)}
+.sec-h{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,3.8vw,2.9rem);line-height:1.1;margin-bottom:.75rem}
+.sec-h em{font-style:italic;color:var(--accent)}
+.sec-h.light{color:#f0ebe0}
+.sec-h.light em{color:var(--gold-light)}
+.sec-sub{font-size:.9rem;color:var(--muted);max-width:560px;line-height:1.75;margin-bottom:2.5rem}
+.sec-sub.light{color:#9a9080}
+
+/* PROBLEM */
+.prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--rule);margin-bottom:2rem}
+.prob-col{padding:2rem;border-right:1px solid var(--rule)}
+.prob-col:last-child{border-right:none}
+.prob-col-lbl{font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem}
+.prob-items{list-style:none}
+.prob-item{padding:.8rem 0;border-bottom:1px solid var(--rule);font-size:.85rem;color:var(--ink-mid);line-height:1.6;display:flex;gap:.75rem;align-items:flex-start}
+.prob-item:last-child{border-bottom:none}
+.prob-item::before{content:'—';color:var(--accent);flex-shrink:0;font-weight:700;margin-top:1px}
+.prob-item strong{color:var(--ink);font-weight:600}
+
+/* Three-line positioning */
+.three-line{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule);margin-bottom:2rem}
+.tl{padding:1.5rem;border-right:1px solid var(--rule)}
+.tl:last-child{border-right:none}
+.tl-who{font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.tl-what{font-size:.9rem;color:var(--ink-mid);line-height:1.45}
+.tl.highlighted{background:var(--bg)}
+.tl.highlighted .tl-who{color:var(--accent)}
+.tl.highlighted .tl-what{color:var(--ink);font-weight:600}
+
+.prob-conclusion{padding:2rem 2.5rem;background:var(--bg-dark);border-left:3px solid var(--accent)}
+.pc-lbl{font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-light);margin-bottom:.75rem}
+.pc-text{font-family:'Cormorant Garamond',serif;font-size:1.15rem;line-height:1.5;color:#e0dbd4}
+.pc-text em{font-style:italic;color:var(--gold-light)}
+
+/* DEFINITION */
+.def-block{padding:2.5rem;border:1px solid var(--rule);background:var(--cream);margin-bottom:2rem}
+.def-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--ink);margin-bottom:.75rem;line-height:1.3}
+.def-body{font-size:.92rem;color:var(--ink-mid);line-height:1.8}
+.def-body strong{color:var(--ink);font-weight:600}
+
+/* KEY PROPERTY */
+.key-prop{padding:2rem 2.5rem;background:var(--bg-dark);border-left:3px solid var(--accent);margin-top:2rem}
+.kp-lbl{font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-light);margin-bottom:.75rem}
+.kp-text{font-family:'Cormorant Garamond',serif;font-size:1.15rem;line-height:1.55;color:#e0dbd4}
+.kp-text em{font-style:italic;color:var(--gold-light)}
+
+/* TWO SIDES */
+.two-sides{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--rule)}
+.ts{padding:2rem 2.25rem;border-right:1px solid var(--rule)}
+.ts:last-child{border-right:none}
+.ts-tag{font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.25rem;display:flex;align-items:center;gap:.6rem}
+.ts-tag::before{content:'';width:1.2rem;height:2px;display:block;flex-shrink:0}
+.ts.int .ts-tag{color:#3a7a5a}
+.ts.int .ts-tag::before{background:#3a7a5a}
+.ts.ext .ts-tag{color:var(--accent)}
+.ts.ext .ts-tag::before{background:var(--accent)}
+.ts-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;margin-bottom:1rem;line-height:1.2}
+.ts.int .ts-title{color:#2d5a4a}
+.ts.ext .ts-title{color:var(--accent)}
+.ts-items{list-style:none}
+.ts-item{padding:.8rem 0;border-bottom:1px solid var(--rule);display:flex;gap:.85rem;align-items:flex-start}
+.ts-item:last-child{border-bottom:none}
+.ts-item-icon{width:26px;height:26px;border-radius:50%;border:1px solid;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;flex-shrink:0;margin-top:2px}
+.ts.int .ts-item-icon{border-color:#3a7a5a;color:#3a7a5a}
+.ts.ext .ts-item-icon{border-color:var(--accent);color:var(--accent)}
+.ts-item-title{font-size:.85rem;font-weight:600;color:var(--ink);margin-bottom:.2rem;line-height:1.3}
+.ts-item-desc{font-size:.77rem;color:var(--muted);line-height:1.6}
+
+/* Scope case */
+.scope-case{margin-top:2.5rem;padding:2rem 2.5rem;border:1px solid var(--rule);background:var(--red-tint);border-left:3px solid var(--accent)}
+.sc-lbl{font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem}
+.sc-flow{display:grid;grid-template-columns:1fr auto 1fr;gap:1.5rem;align-items:center;margin-bottom:1.25rem}
+.sc-box{padding:1rem 1.25rem;border:1px solid var(--rule);background:var(--bg)}
+.sc-box-lbl{font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.sc-box-text{font-size:.82rem;color:var(--ink-mid);line-height:1.55}
+.sc-box-text strong{color:var(--ink);font-weight:600}
+.sc-arr{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--accent);font-style:italic;text-align:center}
+.sc-resolution{font-size:.88rem;color:var(--ink-mid);line-height:1.7}
+.sc-resolution em{font-style:italic;color:var(--accent)}
+.sc-resolution strong{color:var(--ink);font-weight:600}
+
+/* MANAGEMENT CYCLE */
+.cycle{border:1px solid var(--rule);margin-bottom:2rem}
+.cycle-head{padding:1.1rem 1.75rem;background:var(--ink);color:#f0ebe0;display:flex;justify-content:space-between;align-items:center}
+.cycle-head-title{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:700}
+.cycle-head-badge{font-size:.55rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light)}
+.cycle-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0}
+.cs{padding:1.25rem;border-right:1px solid var(--rule);text-align:center}
+.cs:last-child{border-right:none}
+.cs-n{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--rule);line-height:1;margin-bottom:.4rem}
+.cs-title{font-size:.78rem;font-weight:600;color:var(--ink);margin-bottom:.25rem;line-height:1.3}
+.cs-body{font-size:.7rem;color:var(--muted);line-height:1.5}
+.cycle-note{padding:1rem 1.75rem;border-top:1px solid var(--rule);font-size:.75rem;color:var(--muted);font-style:italic}
+
+/* BEP */
+.bep-inputs{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid #232118;margin-bottom:2rem}
+.bi{padding:1.5rem;border-right:1px solid #232118}
+.bi:last-child{border-right:none}
+.bi-lbl{font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#555048;margin-bottom:.4rem}
+.bi-val{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;color:var(--gold-light);line-height:1}
+.bi-sub{font-size:.7rem;color:#555048;margin-top:.35rem;line-height:1.4}
+.bep-scenarios{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #232118;margin-bottom:1.75rem}
+.bs{padding:2rem 2.25rem;border-right:1px solid #232118}
+.bs:last-child{border-right:none}
+.bs.g{border-top:3px solid var(--gold-light)}
+.bs.b{border-top:3px solid var(--accent)}
+.bs-tag{font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.65rem}
+.bs.g .bs-tag{color:var(--gold-light)}
+.bs.b .bs-tag{color:var(--accent)}
+.bs-pct{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;line-height:1;margin-bottom:.4rem}
+.bs.g .bs-pct{color:var(--gold-light)}
+.bs.b .bs-pct{color:var(--accent)}
+.bs-rev{font-size:.85rem;color:#9a9080;margin-bottom:.9rem;line-height:1.4}
+.bs-rev strong{color:#d4cec4;font-size:1rem}
+.bs-rows{border-top:1px solid #232118;padding-top:.85rem}
+.bs-row{display:flex;justify-content:space-between;padding:.38rem 0;border-bottom:1px solid #181610;font-size:.77rem}
+.bs-row:last-child{border-bottom:none}
+.bs-row-k{color:#6a6258}
+.bs-row-v{color:#c4bdb0;font-weight:500}
+.bep-bridge{padding:2rem 2.5rem;border:1px solid #232118;background:#090806}
+.bb-lbl{font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-light);margin-bottom:.9rem}
+.bb-text{font-family:'Cormorant Garamond',serif;font-size:1.15rem;line-height:1.55;color:#e0dbd4;margin-bottom:.9rem}
+.bb-text em{font-style:italic;color:var(--gold-light)}
+.bb-sub{font-size:.78rem;color:#6a6258;line-height:1.7}
+.bb-sub strong{color:#9a9080}
+
+/* FDR MEETING */
+.fdr-block{border:1px solid var(--rule);margin-bottom:2rem}
+.fdr-head{padding:1.25rem 1.75rem;background:var(--ink);color:#f0ebe0;display:flex;justify-content:space-between;align-items:center}
+.fdr-head-title{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:700}
+.fdr-head-badge{font-size:.55rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light)}
+.fdr-body{padding:1.75rem}
+.fdr-body-text{font-size:.88rem;color:var(--ink-mid);line-height:1.8;margin-bottom:1.25rem}
+.fdr-body-text strong{color:var(--ink);font-weight:600}
+.fdr-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule)}
+.fdr-step{padding:1.1rem;border-right:1px solid var(--rule);text-align:center}
+.fdr-step:last-child{border-right:none}
+.fdr-step-n{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--rule);line-height:1;margin-bottom:.5rem}
+.fdr-step-tool{font-size:.55rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.fdr-step-text{font-size:.75rem;color:var(--muted);line-height:1.5}
+
+/* RHYTHM TABLE */
+.rt{width:100%;border-collapse:collapse;border:1px solid var(--rule)}
+.rt thead tr{background:var(--ink);color:var(--bg)}
+.rt th{padding:.85rem 1.2rem;font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-align:left}
+.rt th:first-child{width:85px;color:var(--muted)}
+.rt th:nth-child(2){color:#e0dbd4}
+.rt th:nth-child(3){color:#666}
+.rt th:last-child{color:var(--gold-light)}
+.rt td{padding:.85rem 1.2rem;font-size:.8rem;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.55}
+.rt tr:last-child td{border-bottom:none}
+.rt tr:hover td{background:var(--cream)}
+.fb{display:inline-block;padding:.18rem .5rem;font-size:.55rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border:1px solid;white-space:nowrap}
+.fd{color:var(--accent);border-color:var(--accent)}
+.fw{color:var(--gold);border-color:var(--gold)}
+.fm{color:var(--green);border-color:var(--green)}
+.fe{color:#6a6aaa;border-color:#6a6aaa}
+.who{font-size:.72rem;color:var(--muted)}
+.res{font-size:.78rem;color:var(--green);font-weight:600}
+
+/* ETC quality block */
+.etc-quality{padding:1.75rem 2rem;border:1px solid var(--rule);background:var(--cream);margin-top:2rem}
+.eq-lbl{font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.65rem}
+.eq-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--ink);line-height:1.5}
+.eq-sub{font-size:.8rem;color:var(--muted);margin-top:.6rem;line-height:1.65}
+
+/* LIMITATIONS */
+.limits-section{padding:4rem 0;border-bottom:1px solid var(--rule)}
+.limits-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--rule)}
+.lim-col{padding:2rem}
+.lim-col:first-child{border-right:1px solid var(--rule)}
+.lim-col-lbl{font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:1rem}
+.lim-col:first-child .lim-col-lbl{color:var(--green)}
+.lim-col:last-child .lim-col-lbl{color:var(--accent)}
+.lim-items{list-style:none}
+.lim-item{padding:.6rem 0;border-bottom:1px solid var(--rule);font-size:.82rem;color:var(--ink-mid);line-height:1.55;display:flex;gap:.75rem}
+.lim-item:last-child{border-bottom:none}
+.lim-col:first-child .lim-item::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
+.lim-col:last-child .lim-item::before{content:'×';color:var(--accent);font-weight:700;flex-shrink:0}
+
+/* TEAM */
+.team-cards{display:flex;flex-direction:column;gap:0;border:1px solid var(--rule)}
+.tm{padding:1.4rem 1.75rem;border-bottom:1px solid var(--rule);transition:background .15s}
+.tm:last-child{border-bottom:none}
+.tm:hover{background:var(--cream)}
+.tm-role{font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.tm-name{font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:.3rem}
+.tm-body{font-size:.76rem;color:var(--muted);line-height:1.6}
+
+/* PAYMENT MODELS */
+.models{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid #252318}
+.model{padding:2rem;border-right:1px solid #252318;transition:background .15s}
+.model:last-child{border-right:none}
+.model:hover{background:#0c0b08}
+.model.featured{border-top:3px solid var(--gold-light)}
+.model-tag{font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.6rem}
+.model-tag.f{color:var(--gold-light)}
+.model-tag.p{color:var(--accent)}
+.model-tag.s{color:#6a9a7a}
+.model-title{font-size:.9rem;font-weight:600;color:#d4cec4;margin-bottom:.6rem;line-height:1.3}
+.model-body{font-size:.77rem;color:#6a6258;line-height:1.65;margin-bottom:.9rem}
+.model-note{font-size:.7rem;font-style:italic;color:#555048;line-height:1.5}
+
+/* ANCHOR TABLE */
+.anchor{border:1px solid #252318}
+.a-head{display:grid;grid-template-columns:1fr 1fr;background:#090806;border-bottom:1px solid #232118}
+.a-head-c{padding:.8rem 1.4rem;font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+.a-head-c:first-child{color:#3a3828;border-right:1px solid #252318}
+.a-head-c:last-child{color:var(--gold-light)}
+.a-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #232118}
+.a-row:last-child{border-bottom:none}
+.a-cell{padding:1rem 1.4rem;font-size:.8rem}
+.a-cell:first-child{color:#6a6258;border-right:1px solid #252318}
+.a-cell:last-child{color:#c4bdb0}
+.a-row.hi .a-cell{color:#e0dbd4;font-weight:600}
+
+/* ROLLOUT */
+.stages{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule)}
+.stage{padding:2rem;border-right:1px solid var(--rule)}
+.stage:last-child{border-right:none}
+.stage-n{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:700;color:var(--rule);line-height:1;margin-bottom:.65rem}
+.stage-tag{font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
+.stage-title{font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:.5rem;line-height:1.3}
+.stage-body{font-size:.77rem;color:var(--muted);line-height:1.65}
+.stage-ok{margin-top:.85rem;font-size:.7rem;font-weight:700;color:var(--green);display:flex;align-items:center;gap:.35rem}
+.stage-ok::before{content:'✓';flex-shrink:0}
+
+/* CTA */
+.cta-section{padding:5rem 0}
+.cta-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:start}
+.cta-h{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,3.8vw,3rem);line-height:1.08;margin-bottom:1rem}
+.cta-h em{font-style:italic;color:var(--accent)}
+.cta-body{font-size:.88rem;color:var(--muted);line-height:1.82;margin-bottom:1.1rem}
+.stress-box{border:1px solid var(--rule)}
+.sb-head{padding:1.2rem 1.75rem;background:var(--ink);color:var(--bg);border-bottom:1px solid var(--rule)}
+.sb-head-lbl{font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-light);margin-bottom:.3rem}
+.sb-head-title{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:#f0ebe0;line-height:1.35}
+.sb-body{padding:1.75rem;background:var(--cream)}
+.sb-intro{font-size:.82rem;color:var(--muted);line-height:1.65;margin-bottom:1.2rem}
+.sb-list{list-style:none;margin-bottom:1.5rem}
+.sb-list li{font-size:.8rem;color:var(--ink);padding:.4rem 0;border-bottom:1px solid var(--rule);display:flex;gap:.55rem;line-height:1.45}
+.sb-list li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
+.btn{display:flex;align-items:center;justify-content:center;gap:.6rem;background:var(--accent);color:#fff;text-decoration:none;padding:1rem 1.5rem;font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:background .2s;width:100%}
+.btn:hover{background:#921f06}
+.sb-contacts{padding:.85rem 1.75rem 1.35rem;display:flex;flex-direction:column;gap:.3rem;border-top:1px solid var(--rule)}
+.sb-contacts a{font-size:.76rem;color:var(--muted);text-decoration:none;transition:color .2s}
+.sb-contacts a:hover{color:var(--accent)}
+
+/* FOOTER */
+footer{border-top:2px solid var(--ink);padding:1.5rem 0}
+.fi{max-width:1060px;margin:0 auto;padding:0 2.5rem;display:flex;justify-content:space-between;align-items:center}
+.fn-brand{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:700}
+.fn-sub{font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:.15rem}
+.fl{display:flex;gap:2rem}
+.fl a{font-size:.7rem;color:var(--muted);text-decoration:none}
+.fl a:hover{color:var(--accent)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:780px){
+  html{font-size:14px}
+  .wrap,.wide{padding:0 1.25rem}
+  .cover-top,.cover-bot,.fi{flex-direction:column;gap:.75rem}
+  .cover-deck,.prob-grid,.two-sides,.bep-scenarios,.models,.cta-grid,.sc-flow,.fdr-flow,.three-line{grid-template-columns:1fr}
+  .bep-inputs,.stages,.cycle-steps{grid-template-columns:1fr}
+  .ts,.stage,.model,.bi,.bs,.tl,.cs{border-right:none;border-bottom:1px solid var(--rule)}
+  .ts:last-child,.stage:last-child,.model:last-child,.bi:last-child,.bs:last-child,.tl:last-child,.cs:last-child{border-bottom:none}
+  .prob-col,.lim-col{border-right:none;border-bottom:1px solid var(--rule)}
+  .prob-col:last-child,.lim-col:last-child{border-bottom:none}
+  .a-head,.a-row{grid-template-columns:1fr}
+  .a-head-c:first-child,.a-cell:first-child{border-right:none;border-bottom:1px solid #252318}
+  .sc-arr{text-align:center}
+  .fdr-step{border-right:none;border-bottom:1px solid var(--rule)}
+  .fdr-step:last-child{border-bottom:none}
+  .limits-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="wide">
+    <div class="cover-top">
+      <div>
+        <div class="cover-brand">Financial Delivery Office</div>
+        <div class="cover-brand-sub">Андрій Матвєєв · Засновник і керівний партнер</div>
+      </div>
+      <div class="cover-doc-type">Розширений офер · PDF / КП</div>
+    </div>
+
+    <div class="cover-mid">
+      <div class="cover-kicker">Для власників проектних компаній — архітектура, проектування, інжиніринг</div>
+      <h1 class="cover-h">
+        Фінансовий результат<br>
+        проекту відомий<br>
+        <span style="text-decoration:line-through;text-decoration-color:var(--accent);text-decoration-thickness:3px;color:#555048">після завершення</span><br>
+        — або <em>у процесі.</em>
+      </h1>
+
+      <div class="cover-chain">
+        <div class="cc-node">WBS</div>
+        <div class="cc-arr">→</div>
+        <div class="cc-node hot">Fact</div>
+        <div class="cc-arr">→</div>
+        <div class="cc-node hot">ETC</div>
+        <div class="cc-arr">→</div>
+        <div class="cc-node">Acts</div>
+        <div class="cc-arr">→</div>
+        <div class="cc-node">Cash</div>
+        <div class="cc-arr">→</div>
+        <div class="cc-node target">Profit</div>
+      </div>
+
+      <div class="cover-deck">
+        <div class="cover-lead">
+          У проектному бізнесі відсутній замкнутий контур між виконанням робіт, прогнозом трудовитрат, актуванням і грошовим потоком. В результаті <strong>фінансовий результат проекту стає відомим після його завершення.</strong> Маржа не управляється. Cash flow носить реактивний характер.
+        </div>
+        <div class="cover-verdict">
+          <div class="cv-lbl">Ключова властивість FDO</div>
+          <div class="cv-text">
+            Неможливо отримати фінансовий результат, не пройшовши <em>контрольовані стани системи.</em>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cover-bot">
+      <div class="cover-author">matveev.ceo.dp@gmail.com</div>
+      <div class="cover-contact"><a href="tel:+380665595458">+38 066 559 5458</a></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PROBLEM -->
+<section class="section">
+  <div class="wide">
+    <div class="lbl">Проблема як факт, не думка</div>
+    <h2 class="sec-h">Маржа витікає <em>з двох боків</em> — і жодна існуюча система це не закриває.</h2>
+    <p class="sec-sub">Бухгалтерія і PM-інструменти вирішують різні задачі. Між виконанням і грошима — порожній контур.</p>
+
+    <!-- Three-line positioning -->
+    <div class="three-line">
+      <div class="tl">
+        <div class="tl-who">Бухгалтерія</div>
+        <div class="tl-what">фіксує минуле. Результат стає відомим після закриття.</div>
+      </div>
+      <div class="tl">
+        <div class="tl-who">PM-системи</div>
+        <div class="tl-what">фіксують задачі. Фінансовий контур — не їхня зона.</div>
+      </div>
+      <div class="tl highlighted">
+        <div class="tl-who">FDO</div>
+        <div class="tl-what">управляє фінансовим результатом у процесі — зсередини і ззовні.</div>
+      </div>
+    </div>
+
+    <div class="prob-grid">
+      <div class="prob-col">
+        <div class="prob-col-lbl">Внутрішні втрати · команда</div>
+        <ul class="prob-items">
+          <li class="prob-item">Бюджет на старті майже ніколи не збігається з фінальним — ніхто не сигналізує вчасно</li>
+          <li class="prob-item"><strong>Облік методом нарахування підміняється касовим:</strong> ви думаєте що заробили, а грошей немає</li>
+          <li class="prob-item">Ви не знаєте — <strong>переавансовані ви чи недофінансовані.</strong> Освоєний і оплачений обсяг постійно не збігаються</li>
+          <li class="prob-item">Ви не знаєте скільки потрібно щоб завершити проект і <strong>скільки залишилось у контракті</strong></li>
+        </ul>
+      </div>
+      <div class="prob-col">
+        <div class="prob-col-lbl">Зовнішні втрати · замовник</div>
+        <ul class="prob-items">
+          <li class="prob-item">Замовник змінює ТЗ — обсяг росте, вартість у контракті не змінюється</li>
+          <li class="prob-item">Ліміт правок вичерпано — власник мовчить: <strong>боїться виставити рахунок щоб не втратити клієнта</strong></li>
+          <li class="prob-item">Додаткові роботи виконуються без доп. угоди — маржа зникає мовчки</li>
+          <li class="prob-item">Cash flow носить реактивний характер — рішення завжди запізнюються</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="prob-conclusion">
+      <div class="pc-lbl">Результат</div>
+      <div class="pc-text">
+        Компанія фінансує виконання <em>з власної кишені.</em> Відхилення накопичуються непомітно. Маржа не управляється — вона просто з'являється (або не з'являється) після завершення.
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- DEFINITION + TWO SIDES -->
+<section class="section tinted">
+  <div class="wide">
+    <div class="lbl">Що таке Financial Delivery Office</div>
+
+    <div class="def-block">
+      <div class="def-title">FDO будує замкнутий контур WBS → Fact → ETC → Acts → Cash → Profit і робить неможливим ігнорування реальності.</div>
+      <div class="def-body">
+        Не консультант з рекомендаціями. Не аудитор зі звітом. <strong>Система яка переводить фінансовий результат проектів з області інтуїції в область детермінованого управління.</strong> Кожен елемент вимірюється. Кожен зв'язок контролюється. Кожне відхилення фіксується до фінансового наслідку — і зсередини, і ззовні.
+      </div>
+    </div>
+
+    <div class="two-sides">
+      <div class="ts int">
+        <div class="ts-tag">Внутрішній контур · команда</div>
+        <div class="ts-title">Замкнутий контроль витрат</div>
+        <ul class="ts-items">
+          <div class="ts-item">
+            <div class="ts-item-icon">ETC</div>
+            <div>
+              <div class="ts-item-title">ETC-контроль щотижня — збиток видно за місяць до завершення</div>
+              <div class="ts-item-desc">Витрачено 70% бюджету при 55% виконання — Alert іде одразу, з причиною і рекомендацією.</div>
+            </div>
+          </div>
+          <div class="ts-item">
+            <div class="ts-item-icon">✕</div>
+            <div>
+              <div class="ts-item-title">Veto Power — жоден етап не стартує без затвердженого бюджету</div>
+              <div class="ts-item-desc">Якщо прогноз маржі падає нижче ліміту — ініціюємо зупинку до того як ресурс витрачено.</div>
+            </div>
+          </div>
+          <div class="ts-item">
+            <div class="ts-item-icon">↻</div>
+            <div>
+              <div class="ts-item-title">Дисципліна трекінгу щодня</div>
+              <div class="ts-item-desc">Контроль списання часу. Пушимо як Duolingo: червоніємо якщо дія не виконана вчасно.</div>
+            </div>
+          </div>
+        </ul>
+      </div>
+
+      <div class="ts ext">
+        <div class="ts-tag">Зовнішній контур · замовник</div>
+        <div class="ts-title">Контроль змін і монетизації</div>
+        <ul class="ts-items">
+          <div class="ts-item">
+            <div class="ts-item-icon">ТЗ</div>
+            <div>
+              <div class="ts-item-title">Зміна ТЗ → автоматична ескалація доп. угоди</div>
+              <div class="ts-item-desc">FDO фіксує зміну і ініціює доп. угоду до початку виконання. Регламент — не прохання.</div>
+            </div>
+          </div>
+          <div class="ts-item">
+            <div class="ts-item-icon">✕3</div>
+            <div>
+              <div class="ts-item-title">Ліміт правок вичерпано — рахунок виставлено</div>
+              <div class="ts-item-desc">Власник більше не "поганий" — є регламент. Замовник підписує як ділову процедуру.</div>
+            </div>
+          </div>
+          <div class="ts-item">
+            <div class="ts-item-icon">$+</div>
+            <div>
+              <div class="ts-item-title">Жоден обсяг понад контракт не виконується безкоштовно</div>
+              <div class="ts-item-desc">FDO веде реєстр розширень і пушить на доп. угоди до того як роботи виконані.</div>
+            </div>
+          </div>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Scope creep case -->
+    <div class="scope-case">
+      <div class="sc-lbl">Типовий сценарій · Де зникають 17% маржі</div>
+      <div class="sc-flow">
+        <div class="sc-box">
+          <div class="sc-box-lbl">Без FDO</div>
+          <div class="sc-box-text">Замовник змінив ТЗ на стадії РД. <strong>Обсяг +20%.</strong> Власник мовчить: «образиться — піде до іншого». Команда виконує.</div>
+        </div>
+        <div class="sc-arr">→</div>
+        <div class="sc-box">
+          <div class="sc-box-lbl">Результат</div>
+          <div class="sc-box-text">Маржа <strong>впала з 25% до 8%.</strong> Замовник задоволений. Власник подарував 17% маржі щоб «не образити».</div>
+        </div>
+      </div>
+      <div class="sc-resolution">
+        <strong>З FDO:</strong> при зміні ТЗ — автоматичний Alert і готове обґрунтування для замовника. Власник не "просить" — <em>регламент вимагає оформлення змін.</em> Маржа залишається на рівні 25%+.
+      </div>
+    </div>
+
+    <div class="key-prop">
+      <div class="kp-lbl">Архітектурна властивість</div>
+      <div class="kp-text">
+        Система виключає "невидимі" перевитрати, відкладене актування і розрив між виконанням і оплатою. <em>Неможливо отримати фінансовий результат, не пройшовши контрольовані стани системи.</em>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- BEP -->
+<section class="section dark">
+  <div class="wide">
+    <div class="lbl" style="color:#555048">Математика проблеми · Точка беззбитковості<span style="flex:1;height:1px;background:#252318;display:block;margin-left:1rem"></span></div>
+    <h2 class="sec-h light">Маржа 15% замість 25% — це <em>$100 000 на місяць</em> яких бракує щоб вийти в нуль.</h2>
+    <p class="sec-sub light"><strong style="color:#d4cec4">Вхідні дані: 25 осіб (20 виконавців + 5 менеджерів), зарплата $1 500/місяць.</strong></p>
+
+    <div class="bep-inputs">
+      <div class="bi">
+        <div class="bi-lbl">Команда</div>
+        <div class="bi-val">25</div>
+        <div class="bi-sub">20 виконавців + 5 менеджерів</div>
+      </div>
+      <div class="bi">
+        <div class="bi-lbl">ФОП щомісяця</div>
+        <div class="bi-val">$37 500</div>
+        <div class="bi-sub">25 × $1 500 · незалежно від виручки</div>
+      </div>
+      <div class="bi">
+        <div class="bi-lbl">Формула BEP</div>
+        <div class="bi-val" style="font-size:1.1rem;margin-top:.25rem;line-height:1.5">ФОП ÷ Маржа%</div>
+        <div class="bi-sub">Виручка при якій валовий прибуток покриває ФОП</div>
+      </div>
+    </div>
+
+    <div class="bep-scenarios">
+      <div class="bs g">
+        <div class="bs-tag">Ціль FDO</div>
+        <div class="bs-pct">25%</div>
+        <div class="bs-rev">BEP: <strong>$150 000 / місяць</strong></div>
+        <div class="bs-rows">
+          <div class="bs-row"><span class="bs-row-k">Виручка на 1 особу</span><span class="bs-row-v">$6 000 / міс</span></div>
+          <div class="bs-row"><span class="bs-row-k">Проектів по $20K щоб вийти в нуль</span><span class="bs-row-v">7–8 / місяць</span></div>
+          <div class="bs-row"><span class="bs-row-k" style="color:var(--gold-light)">Стан</span><span class="bs-row-v" style="color:var(--gold-light)">Стійко. Досяжно. Масштабується.</span></div>
+        </div>
+      </div>
+      <div class="bs b">
+        <div class="bs-tag">«Все нормально»</div>
+        <div class="bs-pct">15%</div>
+        <div class="bs-rev">BEP: <strong>$250 000 / місяць</strong></div>
+        <div class="bs-rows">
+          <div class="bs-row"><span class="bs-row-k">Виручка на 1 особу</span><span class="bs-row-v">$10 000 / міс</span></div>
+          <div class="bs-row"><span class="bs-row-k">Проектів по $20K щоб вийти в нуль</span><span class="bs-row-v">12–13 / місяць</span></div>
+          <div class="bs-row"><span class="bs-row-k" style="color:var(--accent)">Стан</span><span class="bs-row-v" style="color:var(--accent)">Компанія фінансує роботу з власної кишені.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bep-bridge">
+      <div class="bb-lbl">Звідси — бізнес-кейс для FDO</div>
+      <div class="bb-text">
+        Різниця між маржею 15% і 25% — це <em>$100 000 виручки на місяць</em> яких бракує. Або — замкнутий фінансовий контур який утримує маржу на 25%+. Перший шлях вимагає більше продажів або власних грошей. Другий — <em>70 000–100 000 грн на місяць.</em>
+      </div>
+      <div class="bb-sub">Без урахування ПДВ і повного податкового навантаження. У реальних умовах BEP зміщується <strong>вгору на 20–40%</strong> — що робить контроль маржі ще критичнішим.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- MANAGEMENT CYCLE -->
+<section class="section">
+  <div class="wide">
+    <div class="lbl">Принцип роботи</div>
+    <h2 class="sec-h">Замкнутий управлінський цикл. <em>Щотижня. Без винятків.</em></h2>
+    <p class="sec-sub">Дані → Синхронізація → Рішення → Задачі → Виконання → назад у систему. Цикл повторюється і не дозволяє відхиленням накопичуватись непомітно.</p>
+
+    <div class="cycle">
+      <div class="cycle-head">
+        <div class="cycle-head-title">Управлінський цикл FDO · щотижнево</div>
+        <div class="cycle-head-badge">Детермінований · Повторюваний · Замкнутий</div>
+      </div>
+      <div class="cycle-steps">
+        <div class="cs">
+          <div class="cs-n">1</div>
+          <div class="cs-title">Дані фіксуються</div>
+          <div class="cs-body">Карта проекту оновлена. ETC актуальний. Факт списаний.</div>
+        </div>
+        <div class="cs">
+          <div class="cs-n">2</div>
+          <div class="cs-title">Дані синхронізуються</div>
+          <div class="cs-body">Щотижнева нарада. Всі PM — єдиний формат. Всі відхилення озвучені.</div>
+        </div>
+        <div class="cs">
+          <div class="cs-n">3</div>
+          <div class="cs-title">Рішення прийняті</div>
+          <div class="cs-body">Fireflies фіксує. COO підтверджує. Протокол готовий.</div>
+        </div>
+        <div class="cs">
+          <div class="cs-n">4</div>
+          <div class="cs-title">Задачі в Asana</div>
+          <div class="cs-body">Кожне рішення — задача з виконавцем і дедлайном.</div>
+        </div>
+        <div class="cs">
+          <div class="cs-n">5</div>
+          <div class="cs-title">Виконання повертається</div>
+          <div class="cs-body">Факт → система. Цикл починається знову.</div>
+        </div>
+      </div>
+      <div class="cycle-note">Якість ETC = якість управління. Система вбудовує тиск на точність прогнозу — регулярне оновлення, виявлення відхилень, відповідальність.</div>
+    </div>
+
+    <!-- FDR Meeting -->
+    <div class="fdr-block">
+      <div class="fdr-head">
+        <div class="fdr-head-title">Weekly Financial Delivery Review · Щотижня</div>
+        <div class="fdr-head-badge">Стандартизований протокол · Автоматична фіксація</div>
+      </div>
+      <div class="fdr-body">
+        <p class="fdr-body-text">
+          Кожен PM звітує <strong>за єдиним шаблоном FDO.</strong> Нарада записується у Fireflies — транскрипт і summary автоматично. Задачі розподіляються в Asana. Фолоуап контролюється до наступної наради.
+        </p>
+        <div class="fdr-flow">
+          <div class="fdr-step">
+            <div class="fdr-step-n">1</div>
+            <div class="fdr-step-tool">Шаблон FDO</div>
+            <div class="fdr-step-text">ETC, статус актів, зміни ТЗ, ризики — кожен PM в одному форматі</div>
+          </div>
+          <div class="fdr-step">
+            <div class="fdr-step-n">2</div>
+            <div class="fdr-step-tool">Fireflies</div>
+            <div class="fdr-step-text">Автоматична фіксація, транскрипт, AI summary</div>
+          </div>
+          <div class="fdr-step">
+            <div class="fdr-step-n">3</div>
+            <div class="fdr-step-tool">Asana</div>
+            <div class="fdr-step-text">Задачі з наради — виконавець і дедлайн автоматично</div>
+          </div>
+          <div class="fdr-step">
+            <div class="fdr-step-n">4</div>
+            <div class="fdr-step-tool">Telegram</div>
+            <div class="fdr-step-text">Summary до власника до 18:00 того ж дня</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- RHYTHM TABLE -->
+<section class="section tinted">
+  <div class="wide">
+    <div class="lbl">Повний операційний ритм</div>
+    <h2 class="sec-h">Кожна позиція — <em>артефакт</em> який можна відкрити і перевірити.</h2>
+
+    <table class="rt">
+      <thead>
+        <tr>
+          <th>Частота</th>
+          <th>Що відбувається</th>
+          <th>Хто</th>
+          <th>Що дає власнику</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="fb fd">Щодня</span></td>
+          <td>Контроль трекінгу часу: хто не списав, хто списав не туди — нотифікація PM</td>
+          <td class="who">Адміністратор</td>
+          <td class="res">Дані для ETC актуальні завжди</td>
+        </tr>
+        <tr>
+          <td><span class="fb fd">Щодня</span></td>
+          <td>Моніторинг умов контрактів: чи настали події для виставлення актів і рахунків</td>
+          <td class="who">Економіст</td>
+          <td class="res">Жоден акт не «загубиться»</td>
+        </tr>
+        <tr>
+          <td><span class="fb fe">При зміні</span></td>
+          <td>Зміна ТЗ або вичерпання ліміту правок → Alert + проект доп. угоди для замовника</td>
+          <td class="who">Економіст + COO</td>
+          <td class="res">Власник не «просить» — регламент вимагає</td>
+        </tr>
+        <tr>
+          <td><span class="fb fw">Щотижня</span></td>
+          <td>Чек-лист ПЕВ: дисципліна часу, ETC, статус актів, дебіторка — щопонеділка до 12:00</td>
+          <td class="who">Адмін + Економіст</td>
+          <td class="res">Тижневий зріз без жодного запиту</td>
+        </tr>
+        <tr>
+          <td><span class="fb fw">Щотижня</span></td>
+          <td>Alert Report: ETC &gt;70% бюджету при &lt;60% виконання — причина і рекомендація</td>
+          <td class="who">Економіст + COO</td>
+          <td class="res">Дієте до того як збиток зафіксовано</td>
+        </tr>
+        <tr>
+          <td><span class="fb fw">Щотижня</span></td>
+          <td>Financial Delivery Review: єдиний шаблон → Fireflies → Asana → Summary до власника</td>
+          <td class="who">COO + Опер. менеджер</td>
+          <td class="res">Рішення прийняті і виконуються</td>
+        </tr>
+        <tr>
+          <td><span class="fb fw">Щотижня</span></td>
+          <td>Telegram-дайджест: стан портфеля, «червоні» проекти, дебіторка — щопонеділка 08:00</td>
+          <td class="who">Система</td>
+          <td class="res">Повна картина за 2 хвилини</td>
+        </tr>
+        <tr>
+          <td><span class="fb fm">Щомісяця</span></td>
+          <td>Реєстр актів і оплат: підписані, прострочені, в зоні ризику</td>
+          <td class="who">Економіст</td>
+          <td class="res">Cash flow передбачуваний</td>
+        </tr>
+        <tr>
+          <td><span class="fb fm">Щомісяця</span></td>
+          <td>FDO Report: P&L по кожному проекту + рентабельність портфеля + 1 сторінка для власника</td>
+          <td class="who">COO</td>
+          <td class="res">Знаєте де заробляєте, де — ні</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="etc-quality">
+      <div class="eq-lbl">Критична точка системи</div>
+      <div class="eq-text">Якість ETC = якість управління.</div>
+      <div class="eq-sub">ETC (Estimate To Complete) — прогноз залишку трудовитрат до завершення проекту. Це єдина метрика яка дозволяє побачити майбутній фінансовий результат до того як він стався. Система FDO вбудовує обов'язкове оновлення ETC, виявлення відхилень і тиск на точність прогнозу — щотижня, без винятків.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- LIMITATIONS -->
+<section class="limits-section">
+  <div class="wide">
+    <div class="lbl">Коли FDO підходить / не підходить</div>
+    <h2 class="sec-h">Ми не беремо всіх. Система <em>не працює</em> без трьох умов.</h2>
+    <p class="sec-sub">Чесність про обмеження — частина нашого позиціонування. Саме тому стрес-тест безкоштовний.</p>
+    <div class="limits-grid">
+      <div class="lim-col">
+        <div class="lim-col-lbl">FDO дає результат якщо</div>
+        <ul class="lim-items">
+          <li class="lim-item">Власник готовий до прозорості — дані відкриті для системи</li>
+          <li class="lim-item">Керівники проектів беруть участь у щотижневій нараді</li>
+          <li class="lim-item">Рішення прийняті на нараді виконуються між зустрічами</li>
+          <li class="lim-item">Є базова WBS-структура або готовність її побудувати</li>
+        </ul>
+      </div>
+      <div class="lim-col">
+        <div class="lim-col-lbl">FDO не дає результату якщо</div>
+        <ul class="lim-items">
+          <li class="lim-item">Дані не оновлюються — трекінг і ETC ведуться нерегулярно</li>
+          <li class="lim-item">Керівники ігнорують нараду або звітують формально</li>
+          <li class="lim-item">Рішення приймаються але не виконуються</li>
+          <li class="lim-item">Власник не готовий до ескалації змін ТЗ перед замовником</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- TEAM -->
+<section class="section">
+  <div class="wide">
+    <div class="lbl">Команда FDO</div>
+    <h2 class="sec-h">Четверо спеціалістів замість <em>одного COO в штаті.</em></h2>
+    <p class="sec-sub">Модель як у аудиторській або бухгалтерській компанії: одна команда — кілька акаунтів. Ви платите за частку часу, отримуєте повний функціонал.</p>
+    <div class="team-cards">
+      <div class="tm">
+        <div class="tm-role">Керівний партнер</div>
+        <div class="tm-name">Андрій Матвєєв · Засновник FDO</div>
+        <div class="tm-body">Рентабельність портфеля і cash flow. Щотижнева консультація. Щомісячний FDO Report. 25+ років у проектному бізнесі — архітектура, будівництво, interior design, Україна і США.</div>
+      </div>
+      <div class="tm">
+        <div class="tm-role">Операційний контролер</div>
+        <div class="tm-name">Операційний менеджер</div>
+        <div class="tm-body">Контроль підписання Актів і ETC. Ескалація при зміні ТЗ і перевищенні ліміту правок. Веде Financial Delivery Review — шаблон, Fireflies, фолоуап в Asana.</div>
+      </div>
+      <div class="tm">
+        <div class="tm-role">Delivery Controller</div>
+        <div class="tm-name">Адміністратор проектів</div>
+        <div class="tm-body">Щоденна робота в if.team / Asana / Jira клієнта. Трекінг часу, WBS, ETC. Звільняє PM від адмінрутини — щодня.</div>
+      </div>
+      <div class="tm">
+        <div class="tm-role">Financial Controller</div>
+        <div class="tm-name">Економіст проектів</div>
+        <div class="tm-body">Реєстр контрактів, актів, рахунків, оплат. P&L по кожному проекту. Дебіторка. Alert Reports при ризику маржі — зсередини і ззовні.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PAYMENT MODELS -->
+<section class="section dark">
+  <div class="wide">
+    <div class="lbl" style="color:#555048">Вартість і моделі оплати<span style="flex:1;height:1px;background:#252318;display:block;margin-left:1rem"></span></div>
+    <h2 class="sec-h light">Співрозмірно вартості <em>одного сильного PM</em> в штаті. Але замість одного — четверо.</h2>
+
+    <div class="models" style="margin-bottom:2.5rem">
+      <div class="model">
+        <div class="model-tag f">Модель 1 · Фіксована підписка</div>
+        <div class="model-title">Фіксований щомісячний платіж</div>
+        <div class="model-body">70 000–100 000 грн на місяць. Незалежно від кількості звернень до команди.</div>
+        <div class="model-note">Підходить для компаній з регулярним портфелем.</div>
+      </div>
+      <div class="model featured">
+        <div class="model-tag p">Модель 2 · Фікс + Penalty</div>
+        <div class="model-title">Пропустили — повертаємо оплату</div>
+        <div class="model-body">Пропущено касовий розрив або падіння маржі &gt;10% без ескалації — повертаємо місячну оплату повністю. Умови в договорі до старту.</div>
+        <div class="model-note">Знімає заперечення «чи гарантуєте результат».</div>
+      </div>
+      <div class="model">
+        <div class="model-tag s">Модель 3 · Фікс + Success Fee</div>
+        <div class="model-title">Базова ставка нижча + % від збереженої маржі</div>
+        <div class="model-body">Додатковий % від запобіжених перевитрат і монетизованих змін ТЗ. Ваш ризик мінімальний на старті.</div>
+        <div class="model-note">Підходить де поточні втрати найвищі.</div>
+      </div>
+    </div>
+
+    <div class="anchor">
+      <div class="a-head">
+        <div class="a-head-c">Альтернатива</div>
+        <div class="a-head-c">Реальна вартість / обмеження</div>
+      </div>
+      <div class="a-row">
+        <div class="a-cell">COO в штаті</div>
+        <div class="a-cell">$3 000–6 000/міс + 3–6 міс. пошуку. 1 COO без команди.</div>
+      </div>
+      <div class="a-row">
+        <div class="a-cell">Зовнішній аудитор</div>
+        <div class="a-cell">Дає звіт. Не закриває контур. Не відповідає за результат.</div>
+      </div>
+      <div class="a-row">
+        <div class="a-cell">Одна незакрита зміна ТЗ (20% обсягу)</div>
+        <div class="a-cell">$3 000–15 000 втраченої маржі — разово</div>
+      </div>
+      <div class="a-row">
+        <div class="a-cell">Один збитковий проект (маржа 8% замість 25%)</div>
+        <div class="a-cell">$5 000–25 000 втраченої маржі — разово</div>
+      </div>
+      <div class="a-row hi">
+        <div class="a-cell">Financial Delivery Office · команда 4 особи</div>
+        <div class="a-cell">70 000–100 000 грн/міс · старт за тиждень · Penalty включено</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ROLLOUT -->
+<section class="section tinted">
+  <div class="wide">
+    <div class="lbl">Формат роботи</div>
+    <h2 class="sec-h">Від діагностики до <em>повного замкнутого контуру</em> — три етапи.</h2>
+    <p class="sec-sub">Ми не беремо всіх. Діагностика — взаємна перевірка: ви дивитесь як ми мислимо, ми дивитесь чи є база для роботи.</p>
+    <div class="stages">
+      <div class="stage">
+        <div class="stage-n">0</div>
+        <div class="stage-tag">Діагностика · Безкоштовно</div>
+        <div class="stage-title">Аналіз одного проекту. Де втрачається маржа, де розрив у контурі.</div>
+        <div class="stage-body">Реальна маржа топ-проекту прямо зараз. Переавансовані чи недофінансовані. Скільки змін ТЗ не монетизовано. Точна сума щоб завершити портфель.</div>
+        <div class="stage-ok">60 хвилин · без зобов'язань · корисний висновок у будь-якому разі</div>
+      </div>
+      <div class="stage">
+        <div class="stage-n">1</div>
+        <div class="stage-tag">Побудова контуру · Тижні 1–2</div>
+        <div class="stage-title">Розгортання FDO-регламенту і інфраструктури</div>
+        <div class="stage-body">NDA і договір. WBS під проекти клієнта. Трекінг, реєстри, чек-листи. Telegram-бот. Fireflies і Asana інтеграція. Запуск циклу.</div>
+        <div class="stage-ok">Перші дані і перший Alert — тиждень 1</div>
+      </div>
+      <div class="stage">
+        <div class="stage-n">2</div>
+        <div class="stage-tag">Повний ритм · З тижня 3</div>
+        <div class="stage-title">Замкнутий цикл в повну силу</div>
+        <div class="stage-body">Перший Financial Delivery Review. Перший FDO Report. Перша ескалація по зміні ТЗ — замовник підписує доп. угоду без конфлікту з власником. Система автономна.</div>
+        <div class="stage-ok">Система автономна — тиждень 4</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="wide">
+    <div class="cta-grid">
+      <div>
+        <h2 class="cta-h">Почніть з <em>діагностики.</em><br>Безкоштовно.</h2>
+        <p class="cta-body">Ми проведемо аналіз одного вашого проекту і покажемо реальну картину: де розрив у фінансовому контурі, де втрачається маржа зсередини і ззовні, яка точна сума необхідна для завершення поточного портфеля.</p>
+        <p class="cta-body">Ми не беремо всіх. Після діагностики — або ми бачимо базу для роботи, або чесно пояснюємо що треба змінити спочатку. Ризик нульовий.</p>
+        <p class="cta-body" style="font-size:.75rem;color:var(--muted)">Андрій Матвєєв · Засновник FDO · Київ / Львів<br>Досвід: архітектура, будівництво, interior design · Ринки: Україна, США</p>
+      </div>
+      <div>
+        <div class="stress-box">
+          <div class="sb-head">
+            <div class="sb-head-lbl">Безкоштовна діагностика · 60 хвилин</div>
+            <div class="sb-head-title">Що ви отримаєте — незалежно від рішення</div>
+          </div>
+          <div class="sb-body">
+            <p class="sb-intro">Ми дивимось на ваші проекти, а не на презентацію.</p>
+            <ul class="sb-list">
+              <li>Переавансовані ви чи недофінансовані — по кожному активному проекту</li>
+              <li>Реальна маржа вашого топ-проекту прямо зараз</li>
+              <li>Де розрив у фінансовому контурі і скільки він коштує</li>
+              <li>Скільки змін ТЗ не були монетизовані і яка їх вартість</li>
+              <li>Яку модель оплати FDO я рекомендую для вашого випадку</li>
+            </ul>
+            <a href="mailto:matveev.ceo.dp@gmail.com?subject=Діагностика — Financial Delivery Office" class="btn">
+              Записатись на діагностику →
+            </a>
+          </div>
+          <div class="sb-contacts">
+            <a href="tel:+380665595458">+38 066 559 5458 · Telegram / Viber / WhatsApp</a>
+            <a href="mailto:matveev.ceo.dp@gmail.com">matveev.ceo.dp@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="fi">
+    <div>
+      <div class="fn-brand">Financial Delivery Office</div>
+      <div class="fn-sub">Андрій Матвєєв · Засновник і керівний партнер</div>
+    </div>
+    <div class="fl">
+      <a href="tel:+380665595458">+38 066 559 5458</a>
+      <a href="mailto:matveev.ceo.dp@gmail.com">matveev.ceo.dp@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
